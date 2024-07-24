@@ -35,36 +35,45 @@ blocks:
       - type: status
         style: powerline
         foreground: p:red
-        template: " {{ if .Error }}{{.String}}{{end}} "
+        template: "{{ if .Error }}{{.String}}{{end}} "
         properties:
           always_enabled: true
       - type: executiontime
         style: plain
         foreground: "p:text"
-        template: " <p:subtext0>took</> {{ .FormattedMs }} "
+        template: "<p:subtext0>took</> {{ .FormattedMs }} "
         properties:
           threshold: 500
           style: austin
       - type: session
         style: plain
-        foreground:
-          p:peach
-          #template: '{{ .UserName }}@{{ .HostName }} '
-        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }}{{ end }} "
+        foreground: p:peach
+        template: "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{ end }}"
+        overflow: hide
       - type: kubectl
-        style: plain
+        style: diamond
+        leading_diamond: " "
+        trailing_diamond: 
         foreground: p:blue
+        background: p:crust
         template: "󱃾 {{ .Context }}::{{if .Namespace}}{{.Namespace}}{{else}}default{{end}}"
+      - type: time
+        style: diamond
+        leading_diamond: " "
+        trailing_diamond: 
+        foreground: p:rosewater
+        background: p:crust
+        template: "󰥔 {{ .CurrentDate | date .Format }}"
 
-  - alignment: left
-    type: prompt
+  - type: prompt
+    alignment: left
     segments:
       - type: path
         style: plain
         foreground: p:pink
         template: "{{ .Path }} "
         properties:
-          home_icon: " ⌂ "
+          home_icon: " ⌂"
           style: powerlevel
       - type: git
         style: diamond
