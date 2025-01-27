@@ -35,7 +35,7 @@ palette:
   crust: "#181926"
 transient_prompt:
   background: transparent
-  template: " <p:crust></><,p:crust>󰥔 {{ .Segments.Time.CurrentDate | date .Segments.Time.Format }}</><p:crust></> {{ .Segments.Path.Text }}  "
+  template: " <p:crust></><,p:crust>󰥔 {{ .Segments.Time.CurrentDate | date .Segments.Time.Format }}</><p:crust></> {{ .PWD }}  "
 blocks:
   - type: prompt
     alignment: left
@@ -63,7 +63,7 @@ blocks:
         style: diamond
         background: p:crust
         foreground: p:lavender
-        template: "{{ .HEAD }}{{ if .Working.Changed }} <p:sapphire>{{.Working.String}}</>{{end}}{{if .Staging.Changed}} <p:yellow>{{.Staging.String}}</>{{end}}"
+        template: "{{ .HEAD }}{{ if .Working.Changed }} <p:sapphire>{{.Working.String}}</>{{end}}{{if .Staging.Changed}} <p:yellow>{{.Staging.String}}</>{{end}}{{if gt .Ahead  0}} <p:green>{{.Ahead}}</>{{end}}{{if gt .Behind 0}} <p:green>{{.Behind}}</>{{end}}"
         leading_diamond: ""
         trailing_diamond: " "
         properties:
